@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>{% block title %}Parameter: Maximum length{% endblock %}</title>
+
+<style>
+body
+{
+color:black;
+}
+h3 {color:rgb(0,0,255);}
+hr {
+  border: 0;
+  width: 65%;
+  color: #f00;
+  background-color: rgb(0,0,255);
+  height: 3px;
+}
+
+p.ex {color:rgb(0,0,255);}
+ul.a {list-style-type:square;}
+</style>
+
+</head>
+
+<body>
+
+    <div id="content">
+        {% block content %}
+        <h3>Upload background peptide sequence file</h3>
+        <p>To run Motif-Z, you can either use our provided background files or upload your own background for motif searching. Default option is "Uniprot human peptide" inlcuding 1 million peptide sequences generated with various length using proteins from Uniprot database generated following HMM model. Option "Random peptides" inlcudes 1 million peptides with random distribution.  For uploaded files, currently only text file will be accepted (format as in example, i.e. one peptide per line). The size of the uploaded file should be less than 10 MB, about 1 million peptides. Bigger size and other formats won't be accepted at this time.
+        {% endblock %}
+    </div>
+
+
+</body>
+</html>

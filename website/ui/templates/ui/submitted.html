@@ -1,0 +1,339 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>{% block title %}motif-Z submitted!{% endblock %}</title>
+    <script src="{{ STATIC_URL }}ui/jquery-1.10.2.js"></script>
+    <script src="{{ STATIC_URL }}ui/d3.min.js"></script>
+</head>
+
+<style>
+h1
+{
+color:blue;
+}
+table, td, th
+{
+border:1px solid green;
+text-align: center;
+}
+th 
+{
+background-color:green;
+color:white;
+}
+.bar {
+  fill: steelblue;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+</style>
+
+<div id="container">
+    
+	<h1>Motif-Z</h1>
+	<div class="status"></div>
+	<br><br>
+	<div class="table_title_1"></div>
+	<table border='1' id="display_1"></table>
+	<br><br>
+	<div class="figure_title"></div>
+	<div id="fig_1"></div>
+	<br><br>
+	<div class="table_title_3"></div>
+	<table border='1' id="display_3"></table>	
+
+	<br>	
+	
+
+   	
+</div> 
+
+
+
+{% if task_id %}
+<script type="text/javascript">
+	
+    $(document).ready(function() {
+	var PollState = function(task_id, email, jobname) {
+	    setTimeout(function(){
+    	    $.ajax({
+            	url: "{% url 'poll_state' %}",
+	    	type: "POST",
+		data: {"task_id" : task_id, "email": email, "jobname":jobname},
+			}).done(function(response){
+				console.log(response)
+				task_state = response.task_state
+				task_data = response.task_data
+
+				switch(task_state) {
+					case "Running":
+						$('.status').html("<h4>Your job is being processed...</h4><hr>This page will update itself automatically.<br> You can either watch the progress of your job, or acess results from your email if you filled in upon completion.");
+						PollState(task_id, email, jobname);
+						break;
+					case "Finished":
+						if (task_data == 'None'){
+							$('.status').html('<em>Your job {{jobname}} finsihed successfully, no motifs detected based on the input data.</em>');
+							break;
+						}
+						else {
+							if ('{{jobname}}' != ''){
+								 $('.status').html('<em>Your job <b>{{jobname}}</b> finished successfully.</em>');
+							}
+							else {
+								 $('.status').html('<em>Your job finished successfully.</em>');
+							}
+							$('.table_title_1').html('Table I. Identified motifs from input data');
+							$('#display_1').html('<tr><th>Motif</th><th>Fold enrichment</th><th>Matches</th><th>p-Value</th><th>Score</th></tr>')
+							$.each(task_data[0], function(i, val) {
+								var str=val[0];
+								var format_str=val[1];
+								var $row = $('<tr><td class=\'1\'>'+str+'</td><td>'+val[2]+'</td><td>'+val[3]+'</td><td>'+val[4]+'</td><td>'+val[5]+'</td><tr>').appendTo('#display_1');
+   								$row.find('td.1').each(function(i, el){
+  									var $letters = $(el).text().split('').reduce(function(set, letter, i){
+										var $c = $('<font>')
+    										.css({'color': setColor(i, format_str), 'font-size': setFontSize(i, format_str)})
+    										.text(letter);
+    									return set.add($c);
+  									}, $());
+  								$(el).empty().append($letters);
+								});
+    
+    								function setColor(index_rp, format_rps){
+      									var id=$.inArray(index_rp, format_rps);
+     									if (id==0) {
+        									return ('red').toString();
+     								 	}
+      									else if (id==1) {
+        									return ('blue').toString();
+      									}
+									else if (id==2) {
+										return ('green').toString();
+									}
+									else if (id==3) {
+										return ('fuchsia').toString();
+									}
+      									else {
+        									return ('black').toString();
+     									}
+    								}
+
+    								function setFontSize(index_rp, format_rps){
+      									var id=$.inArray(index_rp, format_rps);
+      										if (id==0) {
+       											return ('45px').toString();
+      										}
+      										else if (id==1) {
+        										return ('35px').toString();
+      										}
+										else if (id==2) {
+											return ('25px').toString();
+										}
+										else if (id==3) {
+											return ('20px').toString();
+										}
+      										else {
+        										return ('15px').toString();
+      										}
+    								}
+
+							});
+							$('.figure_title').html('Figure I. Distribution of unique peptides');
+							$(function(){
+							var data = [
+    {
+        "length": "7mer",
+        "value": task_data[1][0][2],
+        "color": "red"
+    },
+    {
+        "length": "8mer",
+        "value": task_data[1][1][2],
+        "color": "blue"
+    },
+    {
+        "length": "9mer",
+        "value": task_data[1][2][2],
+        "color": "gree"
+    },
+    {
+        "length": "10mer",
+        "value": task_data[1][3][2],
+        "color": "green"
+    },
+    {
+        "length": "11mer",
+        "value": task_data[1][4][2],
+        "color": "orange"
+    },
+    {
+	"length": "12mer",
+	"value": task_data[1][5][2],
+	"color": "yellow"
+    },
+    {
+	"length": "13mer",
+	"value": task_data[1][6][2],
+	"color": "pink"
+    },
+    {
+	"length": "14mer",
+	"value": task_data[1][7][2],
+	"color": "black"
+    }
+];
+
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 450 - margin.left - margin.right,
+    height = 260 - margin.top - margin.bottom;
+
+var x = d3.scale.ordinal()
+.rangeRoundBands([0, width], .1);
+
+var y = d3.scale.linear()
+.range([height, 0]);
+
+var xAxis = d3.svg.axis()
+.scale(x)
+.orient("bottom");
+
+var yAxis = d3.svg.axis()
+.scale(y)
+.orient("left")
+.ticks(10);
+
+var svg = d3.select("#fig_1").append("svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+x.domain(data.map(function(d) { return d.length; }));
+y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+svg.append("g")
+.attr("class", "x axis")
+.attr("transform", "translate(0," + height + ")")
+.call(xAxis);
+
+svg.append("g")
+.attr("class", "y axis")
+.call(yAxis)
+.append("text")
+.attr("transform", "rotate(-90)")
+.attr("y", 6)
+.attr("dy", ".71em")
+.style("text-anchor", "end")
+.text("# of unique peptides");
+
+svg.selectAll(".bar")
+.data(data)
+.enter().append("rect")
+.attr("class", "bar")
+.attr("x", function(d) { return x(d.length); })
+.attr("width", x.rangeBand())
+.attr("y", function(d) { return y(d.value); })
+.attr("height", function(d) { return height - y(d.value); })
+.style("fill", function(d) { return d.color; });
+});
+							$('.table_title_3').html('Table II. Summary of motifs in the input data');
+							$('#display_3').html('<tr><th>Motif</th><th>7 mer</th><th>8 mer</th><th>9 mer</th><th>10 mer</th><th>11 mer</th><th>12 mer</th><th>13 mer</th><th>14 mer</th><th>Total</th></tr>')
+							$.each(task_data[2], function(i, val) {
+                                                                var str=val[0];
+                                                                var format_str=val[1];
+                                                                var $row = $('<tr><td class=\'1\'>'+str+'</td><td>'+val[2]+'</td><td>'+val[3]+'</td><td>'+val[4]+'</td><td>'+val[5]+'</td><td>'+val[6]+'</td><td>'+val[7]+'</td><td>'+val[8]+'</td><td>'+val[9]+'</td><td>'+val[10]+'</td><tr>').appendTo('#display_3');
+                                                                $row.find('td.1').each(function(i, el){
+                                                                        var $letters = $(el).text().split('').reduce(function(set, letter, i){
+                                                                                var $c = $('<font>')
+                                                                                .css({'color': setColor(i, format_str), 'font-size': setFontSize(i, format_str)})
+                                                                                .text(letter);
+                                                                        return set.add($c);
+                                                                        }, $());
+                                                                $(el).empty().append($letters);
+                                                                });
+
+                                                                function setColor(index_rp, format_rps){
+                                                                        var id=$.inArray(index_rp, format_rps);
+                                                                        if (id==0) {
+                                                                                return ('red').toString();
+                                                                        }
+                                                                        else if (id==1) {
+                                                                                return ('blue').toString();
+                                                                        }
+                                                                        else if (id==2) {
+                                                                                return ('green').toString();
+                                                                        }
+                                                                        else if (id==3) {
+                                                                                return ('fuchsia').toString();
+                                                                        }
+                                                                        else {
+                                                                                return ('black').toString();
+                                                                        }
+                                                                }
+
+								 function setFontSize(index_rp, format_rps){
+                                                                        var id=$.inArray(index_rp, format_rps);
+                                                                        if (id==0) {
+                                                                                return ('45px').toString();
+                                                                        }
+                                                                        else if (id==1) {
+                                                                                return ('35px').toString();
+                                                                        }
+                                                                        else if (id==2) {
+                                                                                return ('25px').toString();
+                                                                        }
+                                                                        else if (id==3) {
+                                                                                return ('20px').toString();
+                                                                        }
+                                                                        else {
+                                                                                return ('15px').toString();
+                                                                        }
+								}
+							});
+							break;
+						}
+					case "Waiting":
+						$('.status').html('<b>Your job was received by the server and queued for the run.</b> <hr>This page will update itself automatically.<br> You can either watch the progress of your job, or acess results from your email if you filled in upon completion.');
+						PollState(task_id, email, jobname);
+						break;
+
+					default:
+						$('.status').html('Unrecoverable error occurred during the run, your job was cancelled. Please retry or report the problem to web adminstrator.');
+						break;
+					
+						
+				};
+
+				
+			});
+
+	}, 3000);
+	}
+	 PollState('{{ task_id }}', '{{ email }}', '{{ jobname }}');
+	});
+
+</script>
+
+
+{% else %}
+    Error: no task_id {{ task_id }}
+{% endif %}
+
+
+</body>
+</html>
+

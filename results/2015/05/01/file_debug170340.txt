@@ -1,0 +1,96 @@
+---------------------------------------------------------------------------------
+Start recursion
+####################################################################################
+Round 0:  FG0 = 50	 BG0 = 1000000
+deleterious_pairs_record= set([])
+sig_pair =  P 1 -44.4161330674
+at round 2, mean =  -6.59801883251
+at round 3, mean =  -6.20851151548
+at round 4, mean =  -6.36055132488
+stdev =  0.707967283453
+bp_list =  [-6.8004529959560847, -6.781147942405144, -6.2124555591576733, -5.0399895644120658, -6.9687105624763435]
+z-score =  53.7533056004
+log form of binomial probability of significant rp pair =  -44.4161330674
+
+top RP =  P / 1 (FG1 =  27  ,  BG1 =  61429  ) 
+Motif =  .P....... , binomial probability =  5.13237642418e-20
+Fold enriched current round =  8.7906363444
+Fold enriched whole dataset =  8
+deleterious_pairs_record= set([])
+sig_pair =  V 7 -15.5286998555
+at round 2, mean =  -7.89764185415
+at round 3, mean =  -7.69885574113
+at round 4, mean =  -7.3351718839
+at round 5, mean =  -7.07257567969
+at round 6, mean =  -6.83168430882
+at round 7, mean =  -6.86231198085
+at round 8, mean =  -7.09329582673
+at round 9, mean =  -7.28111180422
+at round 10, mean =  -7.11372865432
+at round 11, mean =  -6.95727314105
+at round 12, mean =  -6.83643182894
+at round 13, mean =  -6.76904453628
+at round 14, mean =  -6.75640095955
+at round 15, mean =  -6.70009567806
+at round 16, mean =  -6.72045774057
+at round 17, mean =  -6.70147253393
+at round 18, mean =  -6.91316921891
+at round 19, mean =  -6.92070374763
+at round 20, mean =  -6.79403607812
+at round 21, mean =  -6.85563192238
+at round 22, mean =  -6.86212080069
+at round 23, mean =  -6.86939376994
+at round 24, mean =  -6.9516611873
+at round 25, mean =  -6.88568431452
+at round 26, mean =  -6.83015289856
+at round 27, mean =  -6.77768833074
+at round 28, mean =  -6.72934424426
+at round 29, mean =  -6.63507013002
+at round 30, mean =  -6.59547671242
+at round 31, mean =  -6.62328792396
+at round 32, mean =  -6.58504116868
+at round 33, mean =  -6.54881122366
+at round 34, mean =  -6.61933596515
+at round 35, mean =  -6.58567869347
+at round 36, mean =  -6.60069918804
+at round 37, mean =  -6.57810381166
+at round 38, mean =  -6.63322579655
+at round 39, mean =  -6.64399164647
+at round 40, mean =  -6.65279370688
+at round 41, mean =  -6.64554681635
+at round 42, mean =  -6.65617357415
+at round 43, mean =  -6.62596350161
+at round 44, mean =  -6.59889040568
+at round 45, mean =  -6.6106848967
+at round 46, mean =  -6.62114899256
+at round 47, mean =  -6.59653957928
+at round 48, mean =  -6.58653243902
+at round 49, mean =  -6.5960789861
+stdev =  1.41452016803
+bp_list =  [-5.8995358554895674, -8.7762125308563768, -9.0171771761150481, -7.1024974020681295, -5.8804364549604724, -5.7595946586243114, -5.3863360835919982, -7.076705685060416, -8.9411665937923406, -8.9714556016376026, -5.4398971553290068, -5.2362624951029542, -5.3863360835919982, -5.8930097316505927, -6.5793908853707173, -5.8555164556578445, -7.046250740826947, -6.378724020939126, -10.723709548703521, -7.0638597932887253, -4.2606826878060273, -8.1491446518651802, -7.0048761235039576, -7.0366720626861499, -8.9260792039322432, -5.2362624951029542, -5.3863360835919982, -5.3611449995608558, -5.375709822935006, -3.9011208168254941, -5.4076741844458089, -7.4854354819205016, -5.3611449995608558, -5.3532230378776182, -9.0171771761150481, -5.4076741844458089, -7.1414369926810339, -5.7420748855099362, -8.7278612224189285, -7.0638597932887253, -7.0048761235039576, -6.3484243043514157, -7.1024974020681295, -5.3269303823290519, -5.4076741844458089, -7.1414369926810339, -7.1024974020681295, -5.4398971553290068, -6.1061897063729624, -7.0638597932887253]
+z-score =  6.31494769131
+log form of binomial probability of significant rp pair =  -15.5286998555
+
+top RP =  V / 7 (FG2 =  11  ,  BG2 =  3663  ) 
+Motif =  .P.....V. , binomial probability =  1.80289876658e-07
+Fold enriched current round =  6.83227672117
+Fold enriched whole dataset =  60
+Final Motif =  .P....... (27/ 61429) 	Fold enrichment =  8.00
+Total Motif =  set(['.P.......']) 	 Total Motif size =  1
+#################################################################################################
+Round 1:  FG1 = FG0 -  FG1 = 23	 BG1 = 938571
+deleterious_pairs_record= set([])
+sig_pair =  R 8 -4.68618032864
+at round 2, mean =  -6.04636364652
+at round 3, mean =  -6.0193471161
+at round 4, mean =  -6.01844785881
+stdev =  0.0479719415374
+bp_list =  [-6.0371995696620431, -6.0148508296705376, -6.0870405402186165, -5.9382975248469245, -6.0148508296705376]
+z-score =  27.7718075917
+log form of binomial probability of significant rp pair =  -4.68618032864
+
+top RP =  R / 8 (FG1 =  5  ,  BG1 =  54523  ) 
+Motif =  ........R , binomial probability =  0.00922184338006
+Fold enriched current round =  3.74222206982
+Fold enriched whole dataset =  1.72
+Note: All significant pairs identified and search is exhaustive for the input data file

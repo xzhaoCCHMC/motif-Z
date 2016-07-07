@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>{% block title %}Parameter: Binomial probability threshold{% endblock %}</title>
+
+<style>
+body
+{
+color:black; 
+}
+h3 {color:rgb(0,0,255);}
+hr {
+  border: 0;
+  width: 65%;
+  color: #f00;
+  background-color: rgb(0,0,255);
+  height: 3px;
+}
+
+p.ex {color:rgb(0,0,255);}
+ul.a {list-style-rrtype:square;}
+</style>
+
+</head>
+
+<body>
+    
+    <div id="content">
+        {% block content %}
+	<h3>Minimum occurrence in input dataset</h3>
+	<p>The threshold used to filter the motifs having minimum coverage in the input dataset. The default value is 20 which means that identified motif has at least 20 peptides in the input data possessing this motif. Setting this parameter usually depends on your dataset size.  Changing this parameter to a larger number will affect the depth of recursive search and result in motifs with less residue position pairs generally.
+	{% endblock %}
+    </div>
+    
+
+</body>
+</html>
+
+

@@ -1,0 +1,44 @@
+from celery.task import task
+from celery import current_task
+from celery.result import AsyncResult
+from django.core.files import File
+import models
+import json
+#from ui.models import MyModel
+from time import sleep
+
+import sys
+sys.path.append('/var/www/motif-Z/')
+import src.motif_Z as motifZ
+import src_SL.motifZ_SL as motifZ_SL
+
+@task()
+def run_script(file_type, peps, data_summary, result_file_path, statistics_file_path, debug_file_path, max_length,
+                             min_length, zscore_flag, binomial_prob_threshold, threshold_fg):
+    
+    results_list = motifZ.runScript(file_type, peps, data_summary, result_file_path, statistics_file_path, debug_file_path, max_length,
+                            min_length, zscore_flag, binomial_prob_threshold, threshold_fg)
+    
+    print "results=",  results_list
+    debug_file_path = results_list[3]
+    json_results_list = json.dumps(results_list[0:3]) 
+    print "json_results=",  json_results_list 
+    debug_file_path=results_list[3]
+    results_model = models.ResultsModel(task_id=run_script.request.id, motif_table=json_results_list, pep_type='Various', debug_file=debug_file)
+    results_model.save()
+           
+    return results_list
+
+# Task for peptides with the same length 
+@task()
+def run_script_SL(file_type, peps, result_file_path, debug_file_path, pep_length,
+                  zscore_flag, binomial_prob_threshold, threshold_fg):
+    
+    result_table = motifZ_SL.runScript(file_type, peps, result_file_path, debug_file_path, pep_length,
+                                       zscore_flag, binomial_prob_threshold, threshold_fg)
+    
+    print "result_table",  result_table   
+    results_model = models.ResultsModel(task_id=run_script_SL.request.id, motif_table=result_table, pep_type='Same')
+    results_model.save()
+           
+    return result_table

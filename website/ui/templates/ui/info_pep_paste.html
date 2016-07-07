@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>{% block title %}Parameter: Peptide format{% endblock %}</title>
+
+<style>
+body
+{
+color:black; 
+}
+h3 {color:rgb(0,0,255);}
+hr {
+  border: 0;
+  width: 65%;
+  color: #f00;
+  background-color: rgb(0,0,255);
+  height: 3px;
+}
+
+p.ex {color:rgb(0,0,255);}
+ul.a {list-style-type:square;}
+</style>
+
+</head>
+
+<body>
+    
+    <div id="content">
+        {% block content %}
+	<h3>Input format</h3>
+	<p>Input sequences should be in one-letter amino acid code (not case sensitive), with one peptide in each row and without headers. Input sequences can contain unknown or unspecified amino acid, which should be denoted as "X". Peptide sequences with incorrect format will be ignored. Format of the example set in the webpage can be used as a reference. Maximum peptides is 9,999 peptides per submission for reasonable usage of computational resources at a time.  
+	{% endblock %}
+    </div>
+    
+
+</body>
+</html>
+
+

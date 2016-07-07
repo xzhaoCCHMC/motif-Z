@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<style>
+
+div.text
+{
+height:480px;
+padding:10px;
+margin:10px;
+}
+
+body {
+width: 80%;
+margin-left: auto;
+margin-right: auto;
+}
+
+</style>
+
+{% extends "base.html" %}
+
+{% block nav-about %}<strong class="nav-active" style="color:blue; background-color:#98bf21;text-align:center;
+padding:8px 15px;display:block;">ABOUT</strong>{% endblock %}
+
+
+{% block new-page %}
+
+<body>
+	<br><br><br><br><br>
+<div class="text" style="width:85%"">
+
+<p>
+<img src="{{ STATIC_URL }}ui/About_fig.png" style="width: 300px; length: 300px; float: right; margin-bottom: 15px; margin-left: 20px;">
+The algorithm of motif-Z was based on <a style="color:blue" href="http://motif-x.med.harvard.edu/">motif-X</a> with significant change and reimplementation. It used an iterative strategy which builds successive motifs through comparison to a dynamic statistical background. Motif-Z adopted Z-Score for significant residue/position pair determination and used C,N-termini alignments for peptides with various lengths. The detail of the algorithm is described in our paper: A sensitive, length-independent algorithm for identifying motifs from MHC class I peptide ligands. </p><br>
+
+ <p style="color:black;">Motif-Z is developed by <a style="color:blue;" href="http://kronos.stanford.edu">Elias Lab</a> of Department of Chemical and Systems Biology at Stanford University and hosted by <a style="color:blue;" href="http://bmi.cchmc.org">Cincinnati Children's Hospital Medical Center Research Foundation</a>. Backend algorithm was written in Python and web interface was implemented with <a style="color:blue;" href="https://www.djangoproject.com/">Django</a> web framework technology. </p><br>
+
+ <p style="color:black;">Please cite the following:<br><br>
+                            Zhao X & Elias JE (2015) Motif-Z: A sensitive, length-independent algorithm for identifying motifs from MHC class I peptide ligands.
+                                                               In preparation. </p>
+
+</div>
+
+</body>
+
+
+{% endblock %}
+
+
+

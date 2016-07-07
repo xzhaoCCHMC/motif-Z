@@ -1,0 +1,26 @@
+####################################################################################
+Round 0:  FG0 = 38	 BG0 = 1000000
+deleterious_pairs_record= set([])
+deleterious_pairs_record= set([])
+len(seqMatchedFW)=  6
+len(seqMatchedBW)=  15
+FW pair, log_bp =  ('K', 9) -7.09755749795
+BW pair, log_bp =  ('K', -1) -20.9642315965
+aa1= K
+aa2= K
+intersection =  set([u'RQMEGEGVFK', u'RLRMDKLQLK', u'LINRFTMRYK', u'RIYSDPLALK', u'RVSTVQQLTK', u'SLRPQPTELK'])
+log form of binomial probability of significant rp pair =  -20.9642315965
+stdev =  0.68868884865
+bp_list =  [-7.2517290292927683, -6.9052100385423607, -8.4138974931660364, -8.2514216690267226, -8.6576885480161057]
+this rp z_score =  18.9755391952
+log form of binomial probability of significant rp pair =  -20.9642315965
+fg_set has  15 peptides
+bg_set has  56191 peptides
+
+top RP =  K / -1 (FG1 =  15  ,  BG1 =  56191  ) 
+Motif =  [('K', -1)]
+, binomial probability =  7.8586853442e-10
+Fold enriched current round =  7.02491221201
+Fold enriched whole dataset =  7
+Warining: foreground became too small to continue search
+Note: All significant pairs identified and search is exhaustive for the input data file

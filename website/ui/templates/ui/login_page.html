@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>{% block title %}motif-Z login{% endblock %}</title>
+</head>
+
+<style>
+body
+{
+color:blue;
+}
+</style>
+
+<div id="container" style="text-align: center;
+                 	vertical-align: middle;
+					position:absolute;
+  					top:50%;
+  					left:50%;
+  					margin-top:-140px; /* this is half the height of your div*/  
+  					margin-left:-200px; /*this is half of width of your div*/"
+
+	>
+    
+	<h1>Motif-Z</h1>
+
+	{% if loginform.errors %}
+	<p>Your username and password didn't match. Please try again.</p>
+	{% endif %}
+
+	<form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+		<div class="fieldWrapper">
+    	{{ loginform.username.errors }}
+        <label for="id_username">Username:</label>
+        {{ loginform.username }} 
+		</div>
+
+		<div class="fieldWrapper">
+    	{{ loginform.password.errors }}
+        <label for="id_password">Password:</label>
+        {{ loginform.password }} 
+		</div>
+		<br>
+		<input type="submit", value="Sign In" />
+	</form> 
+   	
+</div> 
+	
+</body>
+</html>
+

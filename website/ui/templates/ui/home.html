@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+{% include "base.html" %}
+
+
+<head>
+    <title>{% block title %}Motif-Z home page{% endblock %}</title>
+
+<style>
+body
+{
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+  color:blank;
+}
+
+div.text
+{
+height:480px;
+padding:10px;
+border:blank;
+margin:10px;
+}
+
+p.ex {color:rgb(0,0,255);
+      text-align:center;
+      bottom:5px;
+}
+
+table
+{
+width:100%;
+}
+td
+{
+height:130px;
+} 
+table, th, td
+{
+border: 1px solid #98BF21;
+}
+td
+{
+text-align:center;
+color:black;
+}
+
+#submit {
+    background-color: #2ECCFA;
+    color: #fff;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    font-family: 'Oswald';
+    font-size: 14px;
+    text-decoration: none;
+    cursor: poiner;
+    border: 1px outset #b37d00 ;
+    padding:2px 5px;
+}
+
+
+
+#submit:hover {
+    border: none;
+    background: blue;
+    box-shadow: 0px 0px 1px #777;
+}
+
+hr {
+  border: 0;
+  width: 90%;
+  color: #f00;
+  background-color: #98bf21;
+  height: 3px;
+  float:left;
+}
+
+p.cp {
+      text-align:center;
+      bottom:20px;
+}
+
+p.note {
+    font-style: italic;
+    font-size: 0.8em;
+    }
+
+</style>
+</head>
+
+{% block new-page %}
+<body>
+	<br><br><br><br>
+
+    <div class="text" style="width:85%"">
+        {% block content %}
+	
+	<p><b>Motif-Z</b> (short for Motif detection with statistical Z-Score) is a software tool to identify motifs from major histocompatibility complex (MHC) class I binding peptide sequence data. It is designed to analyze peptide sequences with specific or various lengths (from 7 to 14 amino acids).  Although Motif-Z is developed as an sequence analysis tool for MHC binding peptides class I data but it can also be used efficiently in detection of motifs from short piptide sequences of various lengths (7mer to 14 mer).</p> 
+	<br>
+	
+	<td><form action="" method="post">{% csrf_token %}
+		If your data set contains peptides with various lengths, please submit your data through Various Length mode 
+		<input type="submit" name="various_length" value="Continue" id="submit"/><br>
+	    </form>
+	</td>
+	<br>
+	<td><form action="" method="post">{% csrf_token %}
+		If your data set contains pre-aligned peptides, please submit your data through Specific Length mode 
+		<input type="submit" name="same_length" value="Continue" id="submit"/>
+	    </form>
+	</td>
+
+	<br><br>
+	<hr style="width:100%"/>
+	<p class="note">Disclaimer: The software provided on this website may be used freely by academic and non-profit purposes. Users from the commercial sector should contact authors for permission.</p>
+
+	<p class="note">Feedback and question about this website:  xueheng.zhao@cchmc.org </p>
+
+	{% endblock %}
+    </div>
+    
+</body>
+
+<p class="cp">
+	    ©2016 Cincinnati Children's Hospital Medical Center & Stanford University
+    </p>
+</html>
+{% endblock %}
+
+

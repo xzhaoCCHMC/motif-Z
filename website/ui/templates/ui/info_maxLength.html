@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>{% block title %}Parameter: Maximum length{% endblock %}</title>
+
+<style>
+body
+{
+color:black; 
+}
+h3 {color:rgb(0,0,255);}
+hr {
+  border: 0;
+  width: 65%;
+  color: #f00;
+  background-color: rgb(0,0,255);
+  height: 3px;
+}
+
+p.ex {color:rgb(0,0,255);}
+ul.a {list-style-type:square;}
+</style>
+
+</head>
+
+<body>
+    
+    <div id="content">
+        {% block content %}
+	<h3>Maximum peptide length</h3>
+	<p>Maximum peptide length is the longest peptide in the input data will be analyzed by motif-Z algorithm, default value is 14.
+	{% endblock %}
+    </div>
+    
+
+</body>
+</html>
+
+

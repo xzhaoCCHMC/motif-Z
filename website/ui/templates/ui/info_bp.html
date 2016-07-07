@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>{% block title %}Parameter: Binomial probability threshold{% endblock %}</title>
+
+<style>
+body
+{
+color:black; 
+}
+h3 {color:rgb(0,0,255);}
+hr {
+  border: 0;
+  width: 65%;
+  color: #f00;
+  background-color: rgb(0,0,255);
+  height: 3px;
+}
+
+p.ex {color:rgb(0,0,255);}
+ul.a {list-style-rrtype:square;}
+</style>
+
+</head>
+
+<body>
+    
+    <div id="content">
+        {% block content %}
+	<h3>Binomial probability threshold</h3>
+	<p>The threshold of binomial probability to be considered significant in motif identification.  0.000001 is a stringent value as threshold. Binomial probability threshold will only be used when you don't use Z-Score, which is recommended in the computation of motif due to its statistical power. It can be leave as blank, which indicates using Z-Score and ignores this threshold.
+	{% endblock %}
+    </div>
+    
+
+</body>
+</html>
+
+

@@ -1,0 +1,88 @@
+Statistics of foreground peptides
+---------------------------------------
+  k-mer      total     unique
+---------------------------------------
+      8        353        353
+      9       5179       5179
+     10       2088       2088
+     11       1476       1476
+
+Statistics of background peptides
+---------------------------------------
+k-mer  	 Total peptides
+---------------------------------------
+      8	      36013
+      9	     521754
+     10	     207067
+     11	     164209
+
+
+Statistics of motifs
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+motif                    	 7mer   	 8mer   	 9mer   	 10mer  	 11mer  	 12mer  	 13mer  	 14mer  	 total  
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+AE.{5,8}I                	 na     	       0	      28	       6	       0	 na     	 na     	 na     	      34
+AEM.{4,7}L               	 na     	       0	       9	       8	       3	 na     	 na     	 na     	      20
+YL.{5,8}L                	 na     	       0	      61	      15	       5	 na     	 na     	 na     	      81
+.L.{5,8}L                	 na     	      13	     901	     162	     184	 na     	 na     	 na     	    1260
+.M.{2,5}I..V             	 na     	       1	      21	       0	       4	 na     	 na     	 na     	      26
+AE.{5,8}F                	 na     	       0	      79	      74	      40	 na     	 na     	 na     	     193
+.L.{2,5}V.EV             	 na     	       1	      20	       4	       0	 na     	 na     	 na     	      25
+KE.{5,8}W                	 na     	       2	      50	      55	      22	 na     	 na     	 na     	     129
+EE.{5,8}Y                	 na     	       0	      39	      57	      11	 na     	 na     	 na     	     107
+.EN.{4,7}Y               	 na     	       0	      32	      16	       6	 na     	 na     	 na     	      54
+.L.{3,6}I.L              	 na     	       0	      91	      26	      27	 na     	 na     	 na     	     144
+.E.{3,6}R.Y              	 na     	       0	      43	      59	      34	 na     	 na     	 na     	     136
+.L.{5,8}V                	 na     	       6	     598	     165	     115	 na     	 na     	 na     	     884
+AE.{5,8}W                	 na     	       8	      64	      57	      58	 na     	 na     	 na     	     187
+APA.{4,7}L               	 na     	       6	      24	      10	       6	 na     	 na     	 na     	      46
+RP.{5,8}L                	 na     	      12	     103	      40	      28	 na     	 na     	 na     	     183
+SP.{5,8}L                	 na     	       9	     134	      57	      38	 na     	 na     	 na     	     238
+.V.{2,5}L..V             	 na     	       1	      15	       6	      12	 na     	 na     	 na     	      34
+.L.D.{3,6}I              	 na     	       0	      36	       8	       9	 na     	 na     	 na     	      53
+.L.{2,5}L..I             	 na     	       0	      59	       9	      12	 na     	 na     	 na     	      80
+.V...V.{1,4}V            	 na     	       3	      20	       3	       2	 na     	 na     	 na     	      28
+.Q.{5,8}V                	 na     	       2	      35	       8	       9	 na     	 na     	 na     	      54
+.{7,10}L                 	 na     	     152	    2149	     574	     495	 na     	 na     	 na     	    3370
+.P.{5,8}L                	 na     	      52	     622	     240	     189	 na     	 na     	 na     	    1103
+.P.{5,8}M                	 na     	       2	      76	      38	      24	 na     	 na     	 na     	     140
+.P.{5,8}I                	 na     	       4	      33	       8	       9	 na     	 na     	 na     	      54
+.M.{5,8}I                	 na     	       0	      23	       2	       5	 na     	 na     	 na     	      30
+.L.{2,5}L..V             	 na     	       1	     145	      40	      33	 na     	 na     	 na     	     219
+.L.{2,5}V..V             	 na     	       2	     100	      20	      11	 na     	 na     	 na     	     133
+.E.{3,6}Q.F              	 na     	       0	      48	      34	      28	 na     	 na     	 na     	     110
+.E.{5,8}F                	 na     	       3	     338	     220	     129	 na     	 na     	 na     	     690
+.L.{5,8}I                	 na     	       3	     200	      35	      34	 na     	 na     	 na     	     272
+.L.E.{3,6}L              	 na     	       0	     235	      55	      41	 na     	 na     	 na     	     331
+.L.E.{3,6}I              	 na     	       0	      60	       8	       8	 na     	 na     	 na     	      76
+AE.{5,8}L                	 na     	       1	      68	      37	      19	 na     	 na     	 na     	     125
+.EA.{2,5}Q.F             	 na     	       0	       8	       8	       6	 na     	 na     	 na     	      22
+.L.E.{3,6}V              	 na     	       0	     125	      47	      33	 na     	 na     	 na     	     205
+.PA.{4,7}V               	 na     	       0	      16	       6	       0	 na     	 na     	 na     	      22
+.E.{5,8}W                	 na     	      19	     442	     404	     307	 na     	 na     	 na     	    1172
+KL.D.{3,6}L              	 na     	       0	      37	      10	      15	 na     	 na     	 na     	      62
+.E.{5,8}Y                	 na     	       3	     258	     269	     125	 na     	 na     	 na     	     655
+.LLD.{3,6}L              	 na     	       0	      29	      16	      25	 na     	 na     	 na     	      70
+.L.{2,5}V..I             	 na     	       0	      47	       6	       3	 na     	 na     	 na     	      56
+FL.{5,8}L                	 na     	       0	      96	      21	      17	 na     	 na     	 na     	     134
+.M.{5,8}V                	 na     	       2	      80	      20	      15	 na     	 na     	 na     	     117
+.E.{3,6}K.F              	 na     	       2	      62	      59	      26	 na     	 na     	 na     	     149
+.PR.{4,7}L               	 na     	       7	      78	      62	      52	 na     	 na     	 na     	     199
+.L.{2,5}I..V             	 na     	       1	     118	      25	      23	 na     	 na     	 na     	     167
+AEI.{4,7}L               	 na     	       1	      11	      10	       5	 na     	 na     	 na     	      27
+.L.E.{2,5}QV             	 na     	       0	      19	       3	       4	 na     	 na     	 na     	      26
+.E.{3,6}K.L              	 na     	       1	      54	      10	       4	 na     	 na     	 na     	      69
+.I.{5,8}V                	 na     	       3	      82	      30	      12	 na     	 na     	 na     	     127
+.L.D.{3,6}V              	 na     	       0	      97	      37	      30	 na     	 na     	 na     	     164
+.M.D.{3,6}L              	 na     	       0	      12	       7	       5	 na     	 na     	 na     	      24
+.E.{3,6}H.F              	 na     	       0	      29	      27	      15	 na     	 na     	 na     	      71
+.E.{3,6}H.Y              	 na     	       2	      37	      35	      21	 na     	 na     	 na     	      95
+KI.{5,8}V                	 na     	       1	      24	      10	       3	 na     	 na     	 na     	      38
+AE.{5,8}Y                	 na     	       1	      62	      67	      38	 na     	 na     	 na     	     168
+.D.{5,8}W                	 na     	      14	      21	       2	       1	 na     	 na     	 na     	      38
+.L.D.{3,6}L              	 na     	       0	     160	      48	      54	 na     	 na     	 na     	     262
+.M.D.{3,6}V              	 na     	       0	      13	       4	       7	 na     	 na     	 na     	      24
+.L.D.{0,3}I..V           	 na     	       0	      24	       6	       8	 na     	 na     	 na     	      38
+.E.{3,6}K.Y              	 na     	       0	      40	      61	      29	 na     	 na     	 na     	     130
+.L.{2,5}I..I             	 na     	       0	      31	       3	       2	 na     	 na     	 na     	      36
+.LL.{4,7}L               	 na     	       1	     193	      41	      76	 na     	 na     	 na     	     311

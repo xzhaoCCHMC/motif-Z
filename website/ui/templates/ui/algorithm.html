@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<style>
+p.ex {color:rgb(0,0,255);
+      text-align:center;
+      bottom:10px;
+}
+
+div.text
+{
+height:480px;
+padding:10px;
+border:2px solid #98bf21;
+margin:10px;
+}
+
+</style>
+
+{% extends "base.html" %}
+
+{% block nav-algorithm %}<strong class="nav-active" style="color:blue; background-color:#98bf21;text-align:center;
+padding:4px;display:block;">Algorithm</strong>{% endblock %}
+
+{% block new-page %}
+
+<body>
+	<br><br><br><br><br>
+
+    <div class="text" style="width:85%">
+	<p>The algorithm of motif-Z was based on <a style="color:blue" href="http://motif-x.med.harvard.edu/">motif-X</a> with significant change and reimplementation. It used an iterative strategy which builds successive motifs through comparison to a dynamic statistical background. Motif-Z adopted Z-Score for significant residue/position pair determination and used C,N-termini alignments for peptides with various lengths. The detail of the algorithm is described in our paper: A sensitive, length-independent algorithm for identifying motifs from MHC class I peptide ligands. </p>
+    </div>
+
+</body>
+
+<p class="ex">
+	    ©2015 Cincinnati Children's Hospital Medical Center and Stanford University
+    </p>
+
+{% endblock %}
+
+
+

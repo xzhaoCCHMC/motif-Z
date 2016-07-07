@@ -1,0 +1,93 @@
+---------------------------------------------------------------------------------
+Start recursion
+####################################################################################
+Round 0:  FG0 = 50	 BG0 = 1000000
+deleterious_pairs_record= set([])
+sig_pair =  P 1 -44.4161330674
+at round 2, mean =  -5.89913647446
+at round 3, mean =  -6.42516238132
+at round 4, mean =  -6.09368877569
+stdev =  1.91302282952
+bp_list =  [-8.8031873589112983, -4.1920812876007671, -4.7021407768724979, -8.003240101876937, -4.7677943531640103]
+z-score =  20.0324030118
+log form of binomial probability of significant rp pair =  -44.4161330674
+
+top RP =  P / 1 (FG1 =  27  ,  BG1 =  61429  ) 
+Motif =  .P....... , binomial probability =  5.13237642418e-20
+Fold enriched current round =  8.7906363444
+Fold enriched whole dataset =  8
+deleterious_pairs_record= set([])
+sig_pair =  V 7 -15.5286998555
+at round 2, mean =  -7.63463208059
+at round 3, mean =  -7.51133330862
+at round 4, mean =  -7.42956612731
+stdev =  0.734262061907
+bp_list =  [-7.0048761235039576, -7.0048761235039576, -8.8941439947721666, -7.1414369926810339, -7.1024974020681295]
+z-score =  11.0303039588
+log form of binomial probability of significant rp pair =  -15.5286998555
+
+top RP =  V / 7 (FG2 =  11  ,  BG2 =  3663  ) 
+Motif =  .P.....V. , binomial probability =  1.80289876658e-07
+Fold enriched current round =  6.83227672117
+Fold enriched whole dataset =  60
+Final Motif =  .P....... (27/ 61429) 	Fold enrichment =  8.00
+Total Motif =  set(['.P.......']) 	 Total Motif size =  1
+#################################################################################################
+Round 1:  FG1 = FG0 -  FG1 = 23	 BG1 = 938571
+deleterious_pairs_record= set([])
+sig_pair =  R 8 -4.68618032864
+at round 2, mean =  -6.16529755776
+at round 3, mean =  -6.57430055458
+at round 4, mean =  -6.09857798527
+at round 5, mean =  -6.80014362383
+at round 6, mean =  -6.68422684423
+at round 7, mean =  -6.43993725346
+at round 8, mean =  -6.80488562434
+at round 9, mean =  -6.70726700012
+at round 10, mean =  -7.02438413797
+at round 11, mean =  -7.04222527239
+at round 12, mean =  -6.82036912077
+at round 13, mean =  -6.75719181609
+at round 14, mean =  -6.58249689823
+at round 15, mean =  -6.55153087585
+at round 16, mean =  -6.55387871716
+at round 17, mean =  -6.63750939274
+at round 18, mean =  -6.80318772682
+at round 19, mean =  -6.77820514998
+at round 20, mean =  -6.65112688622
+at round 21, mean =  -6.61861597573
+at round 22, mean =  -6.67110137891
+at round 23, mean =  -6.62526310752
+at round 24, mean =  -6.54394918158
+at round 25, mean =  -6.67668041994
+at round 26, mean =  -6.65299594401
+at round 27, mean =  -6.62927202339
+at round 28, mean =  -6.67234876655
+at round 29, mean =  -6.66015592276
+at round 30, mean =  -6.59193378548
+at round 31, mean =  -6.57237380577
+at round 32, mean =  -6.49480510871
+at round 33, mean =  -6.46420067026
+at round 34, mean =  -6.44996677782
+at round 35, mean =  -6.44598335214
+at round 36, mean =  -6.48871398178
+at round 37, mean =  -6.51407324374
+at round 38, mean =  -6.48867505467
+at round 39, mean =  -6.44008991997
+at round 40, mean =  -6.47811226599
+at round 41, mean =  -6.47571128708
+at round 42, mean =  -6.49842418589
+at round 43, mean =  -6.4457085056
+at round 44, mean =  -6.40357780051
+at round 45, mean =  -6.35370788335
+at round 46, mean =  -6.38705831979
+at round 47, mean =  -6.40925222846
+at round 48, mean =  -6.39078927328
+at round 49, mean =  -6.38274801114
+stdev =  1.72323931948
+bp_list =  [-4.5924149589460681, -6.1021681693242771, -7.8013095450149379, -7.8013095450149379, -4.1956877080495225, -10.307971816631778, -5.9887261666500944, -4.7299101180281191, -9.7244725913730239, -5.8286993821363628, -10.195555516494943, -7.2384777509703495, -4.1580953013178128, -5.9358868553128525, -4.1367680481324109, -6.0870405402186165, -6.5914441781156752, -8.0592308775801342, -9.7853977401764549, -6.3035361901079359, -4.1095616111036186, -5.9358868553128525, -7.8257802490175719, -5.5709828655106941, -4.5924149589460681, -9.9949613790146596, -6.0371995696620431, -5.9887261666500944, -7.8784975750481179, -6.3065634530747907, -4.5452696668520307, -5.9660144348169331, -4.0126068028576034, -5.4542542015098867, -5.9660144348169331, -6.3065634530747907, -8.0270166491620127, -7.4523659359209882, -5.523543870197825, -4.5452696668520307, -7.9990061064972506, -6.3772711519821108, -7.4523659359209882, -4.1789342528044289, -4.5498267767693914, -4.1095616111036186, -7.9211783958438007, -7.4523659359209882, -5.5045674247368108, -5.9887261666500944]
+z-score =  0.984522383702
+This pair doesn't pass z_score test, return this motif
+
+All significant motifs have been identified and the search is exhaustive, done!
+Note: All significant pairs identified and search is exhaustive for the input data file

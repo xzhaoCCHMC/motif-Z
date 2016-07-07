@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>{% block title %}Parameter: Maximum length{% endblock %}</title>
+
+<style>
+body
+{
+color:black;
+}
+h3 {color:rgb(0,0,255);}
+hr {
+  border: 0;
+  width: 65%;
+  color: #f00;
+  background-color: rgb(0,0,255);
+  height: 3px;
+}
+
+p.ex {color:rgb(0,0,255);}
+ul.a {list-style-type:square;}
+</style>
+
+</head>
+
+<body>
+
+    <div id="content">
+        {% block content %}
+        <h3>Upload foreground peptide sequence file</h3>
+        <p>For uploading peptide sequence file, Motif-Z currently accept text file, i.e. one peptide per line (as in example), or comma separated sequence. Upper limit of the file size is 5 MB and please be aware that other format will not be accepted. The default file format is txt.  
+        {% endblock %}
+    </div>
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,113 @@
+####################################################################################
+Round 0:  FG0 = 50	 BG0 = 1000000
+deleterious_pairs_record= set([])
+deleterious_pairs_record= set([])
+len(seqMatchedFW)=  28
+len(seqMatchedBW)=  28
+FW pair, log_bp =  ('P', 1) -47.4591332327
+BW pair, log_bp =  ('V', -2) -48.062588164
+aa1= P
+aa2= V
+log form of binomial probability of significant rp pair =  -48.062588164
+stdev =  3.34980727001
+bp_list =  [-7.2378533781849113, -14.337588805734242, -5.9619221404829252, -5.3087767691065517, -5.9359339147159762]
+this rp z_score =  12.0323857206
+log form of binomial probability of significant rp pair =  -48.062588164
+fg_set has  28 peptides
+bg_set has  59793 peptides
+
+top RP =  V / -2 (FG1 =  28  ,  BG1 =  59793  ) 
+Motif =  [('V', -2)]
+, binomial probability =  1.33869972566e-21
+Fold enriched current round =  9.36564480792
+Fold enriched whole dataset =  9
+deleterious_pairs_record= set([])
+deleterious_pairs_record= set([])
+len(seqMatchedFW)=  26
+len(seqMatchedBW)=  12
+FW pair, log_bp =  ('P', 1) -66.808610148
+BW pair, log_bp =  ('P', -8) -17.252807681
+aa1= P
+aa2= P
+intersection =  set([u'GPRLLLLXT', u'LPQNITAXK', u'GPVICRSXS', u'APEVGNNXH', u'GPKRFAIXL', u'NPFVKTPXS', u'EPTRLQVXK', u'TPYEEVIXD', u'DPPFPFCHXT', u'VPTFFVNXF', u'CPRPKPIPSXS', u'HPNDHSAXH'])
+log form of binomial probability of significant rp pair =  -66.808610148
+stdev =  2.40001401952
+bp_list =  [-7.3175126260374803, -5.7684084560216258, -9.2389834935307054, -6.7719315617363183, -12.567885043463535]
+this rp z_score =  24.3647184709
+log form of binomial probability of significant rp pair =  -66.808610148
+fg_set has  26 peptides
+bg_set has  3661 peptides
+
+top RP =  P / 1 (FG2 =  26  ,  BG2 =  3661  ) 
+Motif =  [('V', -2), ('P', 1)]
+, binomial probability =  9.66917162897e-30
+Fold enriched current round =  15.1658212042
+Fold enriched whole dataset =  142
+deleterious_pairs_record= set([])
+deleterious_pairs_record= set([])
+len(seqMatchedFW)=  4
+len(seqMatchedBW)=  5
+FW pair, log_bp =  ('I', 6) -4.66553789034
+BW pair, log_bp =  ('T', -4) -4.22937745695
+aa1= I
+aa2= T
+pick the backward position since diff =  0.0980696086154
+log form of binomial probability of significant rp pair =  -4.22937745695
+stdev =  1.25929245076
+bp_list =  [-6.0808586738020978, -5.7644256945357801, -6.6469990134794772, -6.6469990134794772, -8.8178642064715795, -6.9189820274245886, -4.9054233210328455, -8.6380440325880432, -7.1678828767102365, -5.2477687909408406, -4.3970054320721657, -6.2783253543016402, -4.9127255805747296, -8.1571393638576506, -6.4261882840498314, -4.2272395449091951, -7.6982814544014033, -6.9167280161634013, -8.4528682377572224, -7.8980848934290204, -4.6655378903361413, -4.9054233210328455, -4.9054233210328455, -6.4261882840498314, -5.7811031430052067, -6.8001197524243882, -4.4773368144782069, -5.4139756035680646, -4.7900419409996964, -4.9054233210328455, -6.7720874023421418, -7.1599731842868852, -5.8985117250415149, -5.9714914812393438, -7.5695008998351483, -5.5174214713782712, -4.6899630653733855, -4.7239602593541701, -4.1019582628787985, -6.4996325379793491, -4.9054233210328455, -8.3194091809247386, -5.3808369012908646, -6.0808586738020978, -6.9189820274245886, -4.600916760733341, -5.848400291020889, -6.9189820274245886, -4.6655378903361413, -5.8985117250415149]
+this rp z_score =  1.46501145766
+This pair doesn't pass z_score test, return this motif
+
+All significant residue and position pairs have been found for the current motif
+rexp = ............V.
+Final Motif =  .P.{3,10}V.
+rp pairs in motif =  [('V', -2), ('P', 1)]
+(26/ 3661) 	Fold enrichment in this round =  142.00
+Total Motif =  ['.P.{3,10}V.'] 	 Total Motif size =  1
+#################################################################################################
+Round 1:  FG1 = FG0 -  FG2 = 24	 BG1 = 996339
+deleterious_pairs_record= set([])
+deleterious_pairs_record= set([])
+len(seqMatchedFW)=  24
+len(seqMatchedBW)=  8
+FW pair, log_bp =  ('S', 2) -60.2014144709
+BW pair, log_bp =  ('S', -8) -7.6796597166
+aa1= S
+aa2= S
+intersection =  set([u'ARSPLPPMTT', u'VRSCEECFVT', u'SPSEPLRI', u'ILSINEIVRV', u'VQSLILQRAS', u'YPSKVSDIKR', u'YQSSVASIRSG', u'SESAWKVK'])
+log form of binomial probability of significant rp pair =  -60.2014144709
+stdev =  1.70443404053
+bp_list =  [-7.5244743012709225, -5.120559377803751, -5.9638007887129749, -9.8668370656701541, -5.7577561861313669]
+this rp z_score =  31.3034870569
+log form of binomial probability of significant rp pair =  -60.2014144709
+fg_set has  24 peptides
+bg_set has  81101 peptides
+
+top RP =  S / 2 (FG1 =  24  ,  BG1 =  81101  ) 
+Motif =  [('S', 2)]
+, binomial probability =  7.1590911602e-27
+Fold enriched current round =  12.285162945
+Fold enriched whole dataset =  6
+deleterious_pairs_record= set([])
+deleterious_pairs_record= set([])
+len(seqMatchedFW)=  6
+len(seqMatchedBW)=  5
+FW pair, log_bp =  ('I', 7) -7.80409192148
+BW pair, log_bp =  ('I', -4) -6.07114330914
+aa1= I
+aa2= I
+intersection =  set([u'YQXSVASIRSG', u'YTXIYRNIRAL'])
+log form of binomial probability of significant rp pair =  -7.80409192148
+stdev =  1.40906012923
+bp_list =  [-5.8227669263718322, -5.8890890566743046, -10.374541898128275, -7.5671674954904393, -5.9560454965692635, -6.5907844717699042, -6.7639570456583513, -10.019645331107544, -7.6298557859946197, -7.4352331869468831, -6.7838440385805718, -6.3217089739305168, -5.8559942748642113, -6.2917066164018438, -8.9984308804561302, -6.1185891296853905, -8.2224553688219331, -8.9265364317773148, -7.5671674954904393, -6.7639570456583513, -9.9958333665265329, -5.8686883764902369, -5.5148480941129536, -8.1221354741198919, -7.5671674954904393, -6.7061724576570576, -9.9958333665265329, -5.621515238802643, -6.1869463605578723, -7.0401172307795363, -8.5458048504842559, -5.2011995925914674, -5.621515238802643, -5.8686883764902369, -4.6311284133736059, -8.0360295327612796, -6.7061724576570576, -6.7838440385805718, -8.424087556909738, -6.7838440385805718, -4.485868542667701, -6.316371566756751, -6.1185891296853905, -4.9605545850998913, -6.2696163526824744, -5.434650008024259, -8.2647852417607393, -6.6157602821528885, -5.8609991209364765, -6.2921251835681504]
+this rp z_score =  0.631118951284
+This pair doesn't pass z_score test, return this motif
+
+All significant residue and position pairs have been found for the current motif
+Final Motif =  ..S.{4,11}
+rp pairs in motif =  [('S', 2)]
+(24/ 81101) 	Fold enrichment in this round =  12.00
+Total Motif =  ['.P.{3,10}V.', '..S.{4,11}'] 	 Total Motif size =  2
+#################################################################################################
+Round 2:  FG2 = FG1 -  FG1 = 0	 BG2 = 915238
+Warning: Empty foreground, suspend search!

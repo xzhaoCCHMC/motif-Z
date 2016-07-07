@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>{% block title %}motif-Z{% endblock %}</title>
+     <script src="{{ STATIC_URL }}ui/jquery-1.10.2.js"></script>
+<style>
+body
+{
+color:black;
+}
+h1 {color:rgb(0,0,255);}
+hr {
+  border: 0;
+  width: 65%;
+  color: #f00;
+  background-color: rgb(0,0,255);
+  height: 3px;
+}
+
+a, img {
+     border: 0px;
+     outline: 0px;
+}
+
+p.ex {color:rgb(0,0,255);
+	  text-align:center;
+      bottom:10px;
+	 }
+
+</style>
+
+</head>
+
+<script language="javascript" type="text/javascript">
+		function popitup(url,title, w, h) {
+		    var left = (screen.width/2)-(w/2);
+  		    var top = (screen.height/2)-(h/2);
+  		    newwindow=window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+    		
+    		    if (window.focus) {newwindow.focus()}
+    		    return false;
+		}
+</script>
+
+<body>
+
+    <div id="content">
+        {% block content %}
+	<h1>Motif-Z for peptides with various length</h1>
+	<hr style="width:75%;float:left;" />
+	<br>
+	<h4>Error! Check the following in the input:</h4> 
+	<p>1. Neither data file chosen nor peptide sequences pasted for submission.</p>
+	<p>2. Data file and pasting peptide sequences in text box cannot be uploaded at the same time.</p>
+	<p>3. Input errors, for example, Max. peptide length less than or equal to Min. peptide length.</p>
+	<p>4. Input sequences contain symbols '@#$%^&*' or in wrong format.</p>
+	<hr style="width:75%;float:left;" /><br>
+	
+	<p> <a style="color:blue;" href="http://research.cchmc.org/motifZ/vl">Back to Motif-Z Various Length</a>
+	{% endblock %}
+    </div>
+
+</body>
+</html>

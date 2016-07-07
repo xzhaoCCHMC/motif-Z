@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title color='blue'>{% block title %}motif-Z job result{% endblock %}</title>
+    <script src="{{ STATIC_URL }}ui/jquery-1.10.2.js"></script>
+    <meta charset="UTF-8">
+</head>
+
+<style>
+h1
+{
+color:blue;
+}
+table, td, th
+{
+border:1px solid green;
+text-align: center;
+}
+th
+{
+background-color:green;
+color:white;
+}
+</style>
+
+<div id="container">
+
+        <h1>Motif-Z</h1>
+	{% if jobname %}
+                <h3>Job name: {{ jobname }}</h3>
+        {% else %}
+                <h3>Result</h3>
+        {% endif %}
+        <div class="status"></div>
+        <br><br>
+        <div class="table_title_1"></div>
+        <table border='1' id="display_1"></table>
+        <br><br>
+        <div class="table_title_2"></div>
+        <table border='1' id="display_2"></table>
+        <br><br>
+        <div class="table_title_3"></div>
+        <table border='1' id="display_3"></table>
+
+        <br>
+
+</div>
+
+{% if not motif_table %}
+                Your job finsihed successfully, but no motifs detected based on the input data.
+{% else %}
+	{% if pep_type == 'Various' %}
+
+		<script type="text/javascript">
+        	$(document).ready(function() {
+			var motif_table={{ motif_table|safe }};
+				$('.table_title_1').html('Table 1. Identified motifs from input data');
+                                                        $('#display_1').html('<tr><th>Motif</th><th>Fold enrichment</th><th>Matches</th><th>p-Value</th><th>Score</th></tr>')
+                                                        $.each(motif_table[0], function(i, val) {
+                                                                var str=val[0];
+                                                                var format_str=val[1];
+                                                                var $row = $('<tr><td class=\'1\'>'+str+'</td><td>'+val[2]+'</td><td>'+val[3]+'</td><td>'+val[4]+'</td><td>'+val[5]+'</td><tr>').appendTo('#display_1');
+                                                                $row.find('td.1').each(function(i, el){
+                                                                        var $letters = $(el).text().split('').reduce(function(set, letter, i){
+                                                                                var $c = $('<font>')
+                                                                                .css({'color': setColor(i, format_str), 'font-size': setFontSize(i, format_str)})
+                                                                                .text(letter);
+                                                                        return set.add($c);
+                                                                        }, $());
+                                                                $(el).empty().append($letters);
+                                                                });
+    
+                                                                function setColor(index_rp, format_rps){
+                                                                        var id=$.inArray(index_rp, format_rps);
+                                                                        if (id==0) {
+                                                                                return ('red').toString();
+                                                                        }
+                                                                        else if (id==1) {
+                                                                                return ('blue').toString();
+                                                                        }
+                                                                        else if (id==2) {
+                                                                                return ('green').toString();
+                                                                        }
+                                                                        else if (id==3) {
+                                                                                retrun ('yellow').toString();
+                                                                        }
+                                                                        else {
+                                                                                return ('black').toString();
+                                                                        }
+                                                                }
+						
+								function setFontSize(index_rp, format_rps){
+                                                                        var id=$.inArray(index_rp, format_rps);
+                                                                        if (id==0) {
+                                                                                return ('45px').toString();
+                                                                        }
+                                                                        else if (id==1) {
+                                                                                 return ('35px').toString();
+                                                                        }
+                                                                        else if (id==2) {
+                                                                                 return ('25px').toString();
+                                                                        }
+                                                                        else if (id==3) {
+                                                                                 return ('20px').toString();
+                                                                        }
+                                                                        else {
+                                                                                 return ('15px').toString();
+                                                                        }
+                                                                }
+
+                                                        });
+
+					$('.table_title_2').html('Table 2. Details of input data');
+                                                        $('#display_2').html('<tr><th>K-mer</th><th>Total number</th><th>Unique peptides</th></tr>')
+                                                        $.each(motif_table[1], function(i, val) {
+                                                        $('<tr><td>'+val[0]+'</td><td>'+val[1]+'</td><td>'+val[2]+'</td><tr>').appendTo('#display_2');
+                                                        });
+
+
+
+
+					 $('.table_title_3').html('Table 3. Summary of motifs in the input data');
+                                                        $('#display_3').html('<tr><th>Motif</th><th>7 mer</th><th>8 mer</th><th>9 mer</th><th>10 mer</th><th>11 mer</th><th>12 mer</th><th>13 mer</th><th>14 mer</th><th>Total</th></tr>')
+                                                        $.each(motif_table[2], function(i, val) {
+                                                                var str=val[0];
+                                                                var format_str=val[1];
+                                                                var $row = $('<tr><td class=\'1\'>'+str+'</td><td>'+val[2]+'</td><td>'+val[3]+'</td><td>'+val[4]+'</td><td>'+val[5]+'</td><td>'+val[6]+'</td><td>'+val[7]+'</td><td>'+val[8]+'</td><td>'+val[9]+'</td><td>'+val[10]+'</td><tr>').appendTo('#display_3');
+                                                                $row.find('td.1').each(function(i, el){
+                                                                        var $letters = $(el).text().split('').reduce(function(set, letter, i){
+                                                                                var $c = $('<font>')
+                                                                                .css({'color': setColor(i, format_str), 'font-size': setFontSize(i, format_str)})
+                                                                                .text(letter);
+                                                                        return set.add($c);
+                                                                        }, $());
+                                                                $(el).empty().append($letters);
+                                                                });
+
+                                                                function setColor(index_rp, format_rps){
+                                                                        var id=$.inArray(index_rp, format_rps);
+                                                                        if (id==0) {
+                                                                                return ('red').toString();
+                                                                        }
+                                                                        else if (id==1) {
+                                                                                return ('blue').toString();
+                                                                        }
+                                                                        else if (id==2) {
+                                                                                return ('green').toString();
+                                                                        }
+                                                                        else if (id==3) {
+                                                                                retrun ('yellow').toString();
+                                                                        }
+                                                                        else {
+                                                                                return ('black').toString();
+                                                                        }
+                                                                }
+
+
+
+                                                                function setFontSize(index_rp, format_rps){
+                                                                        var id=$.inArray(index_rp, format_rps);
+                                                                        if (id==0) {
+                                                                                return ('45px').toString();
+                                                                        }
+                                                                        else if (id==1) {
+                                                                                return ('35px').toString();
+                                                                        }
+                                                                        else if (id==2) {
+                                                                                return ('25px').toString();
+                                                                        }
+                                                                        else if (id==3) {
+                                                                                return ('20px').toString();
+                                                                        }
+                                                                        else {
+                                                                                return ('15px').toString();
+                                                                        }
+                                                                }
+                                                        });                                
+
+		});
+		</script>
+         {% else %}
+		<script type="text/javascript">
+                $(document).ready(function() {
+                        var motif_table={{ motif_table|safe }};
+                                $('.table_title_1').html('Table 1. Identified motifs from input data');
+                                                        $('#display_1').html('<tr><th>Motif</th><th>Fold enrichment</th><th>Matches</th><th>p-Value</th><th>Score</th></tr>')
+                                                        $.each(motif_table, function(i, val) {
+                                                                var str=val[0];
+                                                                var format_str=val[1];
+                                                                var $row = $('<tr><td class=\'1\'>'+str+'</td><td>'+val[2]+'</td><td>'+val[3]+'</td><td>'+val[4]+'</td><td>'+val[5]+'</td><tr>').appendTo('#display_1');
+                                                                $row.find('td.1').each(function(i, el){
+                                                                        var $letters = $(el).text().split('').reduce(function(set, letter, i){
+                                                                                var $c = $('<font>')
+                                                                                .css({'color': setColor(i, format_str), 'font-size': setFontSize(i, format_str)})
+                                                                                .text(letter);
+                                                                        return set.add($c);
+                                                                }, $());
+                                                                $(el).empty().append($letters);
+                                                                });
+
+                                                                function setColor(index_rp, format_rps){
+                                                                        var id=$.inArray(index_rp, format_rps);
+                                                                        if (id==0) {
+                                                                                return ('red').toString();
+                                                                        }
+                                                                        else if (id==1) {
+                                                                                return ('blue').toString();
+                                                                        }
+                                                                        else if (id==2) {
+                                                                                return ('green').toString();
+                                                                        }
+                                                                        else if (id==3) {
+                                                                                retrun ('yellow').toString();
+                                                                        }
+                                                                        else {
+                                                                                return ('black').toString();
+                                                                        }
+                                                                }
+
+								function setFontSize(index_rp, format_rps){
+                                                                        var id=$.inArray(index_rp, format_rps);
+                                                                        if (id==0) {
+                                                                                return ('45px').toString();
+                                                                        }
+                                                                        else if (id==1) {
+                                                                                return ('35px').toString();
+                                                                        }
+                                                                        else if (id==2) {
+                                                                                return ('25px').toString();
+                                                                        }
+                                                                        else if (id==3) {
+                                                                                return ('20px').toString();
+                                                                        }
+                                                                        else {
+                                                                                return ('15px').toString();
+                                                                        }
+                                                                }
+                                                        });
+
+                });
+                </script>
+
+
+
+
+             
+	    {% endif %}
+
+	{% endif %}
+
+</body>
+</html>
+

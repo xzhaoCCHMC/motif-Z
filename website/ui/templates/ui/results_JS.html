@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title color='blue'>{% block title %}motif-Z job result{% endblock %}</title>
+    <script src="{{ STATIC_URL }}ui/jquery-1.10.2.js"></script>
+</head>
+
+<style>
+h1
+{
+color:blue;
+}
+table, td, th
+{
+border:1px solid green;
+}
+th 
+{
+background-color:green;
+color:white;
+}
+</style>
+
+<div id="container">
+    
+	<h1>Motif-Z</h1>
+	{% if jobname %}
+		<h3>Job name: {{ jobname }}</h3>
+	{% else %}
+		<h3>Result</h3>
+	{% endif %}
+</div> 
+	{% if not motif_table %}
+		Your job finsihed successfully, but no motifs detected based on the input data.
+	{% else %}
+	    {% if pep_type == 'Various' %}
+		<b>Table 1.</b> Identified motifs from input data 
+		<br><br>
+		<table border='1'>
+		<tr><th>Motif</th><th>Fold enrichment</th><th>Matches</th><th>p-Value</th><th>Score</th></tr>
+		{% for values in motif_table.0 %}
+		    <tr><td>{{ values.0 }}</td><td>{{  values.1 }}</td><td>{{  values.2 }}</td><td>{{  values.3 }}</td><td>{{  values.4 }}</td></tr>
+		{% endfor %}
+		</table>
+	    
+		<br><br>
+				
+		<b>Table 2.</b> Details of input data <br>
+		<br><table border='1'>
+		<tr><th>K-mer</th><th>Total number</th><th>Unique peptides</th></tr>
+		{% for stat in motif_table.1 %}
+			<tr><td>{{ stat.0 }}</td><td>{{  stat.1 }}</td><td>{{  stat.2 }}</td></tr>
+		{% endfor %}
+		</table>
+
+		<br><br>		
+						
+		<b>Table 3.</b> Summary of motifs in the input data <br>
+		<br><table border='1'>
+		<tr><th>Motif</th><th>7 mer</th><th>8 mer</th><th>9 mer</th><th>10 mer</th><th>11 mer</th><th>12 mer</th><th>13 mer</th><th>14 mer</th><th>Total</th></tr>
+		{% for numbers in motif_table.2 %}
+			<tr><td>{{ numbers.0 }}</td><td>{{  numbers.1 }}</td><td>{{  numbers.2 }}</td><td>{{  numbers.3 }}</td><td>{{  numbers.4 }}</td><td>{{  numbers.5 }}</td><td>{{  numbers.6 }}</td><td>{{  numbers.7 }}</td><td>{{  numbers.8 }}</td><td>{{  numbers.9 }}</td></tr>
+		{% endfor %}
+		</table>
+
+	    {% else %}
+
+		<b>Table 1.</b> Identified motifs from input data 
+		<br><br>
+		<table border='1'>
+		<tr><th>Motif</th><th>Fold enrichment</th><th>Matches</th><th>p-Value</th><th>Score</th></tr>
+		{% for values in motif_table %}
+		    <tr><td>{{ values.0 }}</td><td>{{  values.1 }}</td><td>{{  values.2 }}</td><td>{{  values.3 }}</td><td>{{  values.4 }}</td></tr>
+		{% endfor %}
+		</table>
+
+	    {% endif %}
+
+	{% endif %}
+
+</body>
+</html>
+

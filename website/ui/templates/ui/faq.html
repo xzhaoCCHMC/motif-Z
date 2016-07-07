@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<style>
+body {
+width: 80%;
+margin-left: auto;
+margin-right: auto;
+}
+a:link, a:visited {
+    color: blue;
+    text-decoration: underline;
+    text-decoration-color: red;
+}
+a:link:active, a:visited:active {
+    color: blue;
+    } 
+  
+</style>
+
+{% extends "base.html" %}
+
+{% block nav-faq %}<strong class="nav-active" style="color:blue; background-color:#98bf21;text-align:center;
+padding:8px 15px;display:block;">HELP</strong>{% endblock %}
+
+
+{% block new-page %}
+
+<body>
+	<br><br><br><br><br>
+
+<div id="content" style="width:85%"">	
+<p>
+<a style="color:blue" href="#Q1">What is motif-Z designed to do?</a>
+<br>
+<a style="color:blue" href="#Q1.1">How to upload input sequences on motif-Z?</a>
+<br>
+<a style="color:blue" href="#Q2">How to run motif-Z?</a>
+<br>
+<a style="color:blue" href="#Q3">What is binomial probability threshold?</a>
+<br>
+<a style="color:blue" href="#Q4">What is maximum peptide length?</a>
+<br>
+<a style="color:blue" href="#Q5">What is minimum peptide length?</a>
+<br>
+<a style="color:blue" href="#Q6">What is minimum occurrence in input dataset threshold?</a>
+<br>
+<a style="color:blue" href="#Q7">What is peptide length parameter in pre-aligned mode?</a>
+<br>
+<a style="color:blue" href="#Q7.1">What is background dataset used in the motif detection?</a>
+<br>
+<a style="color:blue" href="#Q8">Is there any test data set that I could try out?</a>
+<br>
+<a style="color:blue" href="#Q8.1">What is the confidentiality of my data sent to motif-Z?</a>
+<br>
+<a style="color:blue" href="#Q9">What if I have more questions?</a>
+<br>
+<a style="color:blue" href="#Q10">How do I reference motif-Z?</a>
+<br>
+</p>
+
+<h4><a id="Q1">What is motif-Z designed to do?</a></h4>
+<p>Motif-Z was designed to identify motifs from large tandem mass spectrometry-based data sets of pMHC class I. Since the algorithm has no discrimination on input peptides, Motif-Z is able to detect motifs from practically any sequence based data set - either pre-aligned or with different lengths. Currently it supports datasets with length from 7 to 14 amino acids. </p>
+<h4><a id="Q1.1">How to upload input sequences on motif-Z?</a></h4>
+<p>You can upload input sequences either by selecting a file on your local disk or by cut and paste your sequences in text format. The file must be in either csv or txt files. If the input is uploaded from your local disk, corresponding checkbox indicating file format should be checked.</p>
+<h4><a id="Q2">How to run motif-Z?</a></h4>
+<p>Most of parameters in motif-Z were set with default values.  These parameters were selected and validated during developement with testing datasets, so users can use these setting without change. After clicking on the "Submit" button, the status of your job will be displayed and constantly updated until it terminates and the server output appears in the browser window. </p>
+<h4><a id="Q3">What is binomial probability threshold?</a></h4>
+<p>The threshold of binomial probability to be considered significant in motif identification.  0.000001 is a stringent value as threshold. Binomial probability threshold will only be used when you don't use Z-Score, which is recommended in the computation of motif due to its statistical power. It can be leave as blank, which indicates using Z-Score and ignores this threshold. </p>
+<h4><a id="Q4">What is maximum peptide length?</a></h4>
+<p>Maximum peptide length is the longest peptide in the input data will be analyzed by motif-Z algorithm, default value is 14.</p>
+<h4><a id="Q5">What is minimum peptide length?</a></h4>
+<p>Minimum peptide length is the shortest peptide in the input data will be analyzed by motif-Z algorithm, default value is 7.</p>
+<h4><a id="Q6">What is minimum occurrence in input dataset threshold?</a></h4>
+<p>The threshold used to filter the motifs having minimum coverage in the input dataset. The default value is 20 which means that identified motif has at least 20 peptides in the input data possessing this motif. Setting this parameter usually depends on your dataset size.  Changing this parameter to a larger number will affect the depth of recursive search and result in motifs with less residue position pairs generally.</p>
+<h4><a id="Q7">What is peptide length parameter in pre-aligned mode?</a></h4>
+<p>This parameter only used for datasets with pre-aligned peptides with same length.  The default value is 9.</p>
+<h4><a id="Q7.1">What is background dataset used in the motif-Z?</a></h4>
+<p>Background peptide sequences were generated from a database of known human protein sequences (IPI Human v3.66) using a Markov chain method to simulate peptides randomly generated from human proteins. The range of peptide length is from 7 to 14 amino acids with a total number of 1 million peptides.</p>
+<h4><a id="Q8">Is there any test data set that I could try out?</a></h4>
+<p>You could try a experimental tandem mass spectrometry data set, about 1000 peptide sequences, from B-LCL-HHC cell line. <a href="{{ STATIC_URL }}ui/example_C0501.txt" download="motifZ_example.txt">Download it here.</a> Then upload it onto motif-Z either by cutting and pasting the sequences or by uploading the actual file. You can just use default parameters. If you did everything correctly you should get back 28 motifs.</p>
+<h4><a id="Q8.1">What is the confidentiality of my data submitted to motif-Z?</a></h4>
+<p>All sequences submitted to motif-Z are kept confidential and will be deleted after processing. Your results will be kept in 48 hours in our server for your download and will be deleted after that.</p>
+<h4><a id="Q9">What if I have more questions?</a></h4>
+<p>You are welcome to send your questions in email to us: josh.elias AT stanford.edu or zhaoxh AT stanford.edu. We will get back to you as soon as we can.</p>
+<h4><a id="Q10">How do I reference motif-Z?</a></h4>
+<p>An article describing the motif-Z algorithm is in preparation and will be submitted soon. We will update the paper's link after its publication.</p>
+</div>
+</body>
+
+{% endblock %}
+
+
+
+
+

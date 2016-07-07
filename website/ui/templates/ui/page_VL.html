@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>{% block title %}motif-Z{% endblock %}</title>
+	<script src="{{ STATIC_URL }}ui/jquery-1.10.2.js"></script>
+<style>
+body
+{
+background-color:#fff;
+width:80%;
+margin-left:auto;
+margin-right:auto;
+}
+
+
+h1 {color:rgb(0,0,255);}
+hr {
+  border: 0;
+  width: 75%;
+  color: #f00;
+  background-color: rgb(0,0,255);
+  height: 3px;
+}
+
+a, img {
+     border: 0px;
+     outline: 0px;
+}
+
+input[type=submit] {padding:5px 15px; background:#58D3F7; border:0 none; color:#fff;
+cursor:pointer;
+-webkit-border-radius: 5px;
+border-radius: 5px; }
+
+</style>
+
+</head>
+
+<script language="javascript" type="text/javascript">
+		function popitup(url,title, w, h) {
+		    var left = (screen.width/2)-(w/2);
+  		    var top = (screen.height/2)-(h/2);
+  		    newwindow=window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+    		
+    		    if (window.focus) {newwindow.focus()}
+    		    return false;
+		}
+</script>
+
+<body>
+
+    <div id="content">
+        {% block content %}
+<!--	<img src="{{ STATIC_URL }}ui/stanford_med.jpeg" style="width: 100px; length: 100px; float: right; margin-bottom: 15px; margin-right: 15px;"> -->
+	<h1>Motif-Z various length</h1>
+	<hr style="width:75%;float:left;" />
+	<br>
+	<p>Upload peptide data set either from a file or directly paste your data into the text box.</p>
+
+	<form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+	<div id="file">
+	    <div class="fieldWrapper">
+	   	{{ fileform.inputFile.errors }}
+        	<label for="id_inputFile">Upload data file:</label>
+        	{{ fileform.inputFile }} 
+
+		{{ fileform.fileType.errors }}
+        	<label for="id_fileType">File format:</label>
+        	{{ fileform.fileType }} 
+        	<a href="info_foregroundFormat.html" onclick="return popitup('info_foregroundFormat', 'Input file', 300, 400)">
+        	<img src="{{ STATIC_URL }}ui/ilink.jpeg" alt="info_maxLength" width="20" height="20" />
+        	</a>
+
+	    </div>
+
+	    <p>Or paste your data in text box below (max. 9,999 peptides)
+	    <a href="info_pep_paste.html" onclick="return popitup('info_pep_paste', 'Peptide format', 300, 400)"> 
+		<img src="{{ STATIC_URL }}ui/ilink.jpeg" alt="info_maxLength" width="20" height="20" />
+	    </a></p>		
+            
+	    <div class="fieldWrapper">
+		{{ fileform.inputText.errors }}
+        	<label for="id_inputText"></label>
+        	{{ fileform.inputText }} 
+			<button type="button" id="useExample">Use Example</button>
+
+			<script type="text/javascript">
+				$( "#useExample" ).click(function() {
+				
+					document.getElementById("id_inputText").value = '{{ exampletext }}';
+					
+				});
+			</script>
+			
+	    </div>
+	    <br>
+	    
+            <div class="fieldWrapper">
+                 {{ fileform.backgroundChoice.errors }}
+		 <label for="id_background">Choose background:</label>
+		 {{ fileform.backgroundChoice }} 
+                 <a href="info_backgroundFormat.html" onclick="return popitup('info_backgroundFormat', 'Background', 300, 400)">
+                 <img src="{{ STATIC_URL }}ui/ilink.jpeg" alt="info_maxLength" width="20" height="20" />
+                 </a>
+            </div>
+            <div class="fieldWrapper">
+                 {{ fileform.backgroundFile.errors }}
+                 <label for="id_backgroundFile">&nbsp &nbsp &nbsp &nbsp &nbsp or upload a background file</label>
+                 {{ fileform.backgroundFile }}
+
+            </div>
+      	</div>
+
+        <br>
+	<div id="parameters">
+	    {{ parametersform.non_field_errors }}
+
+    	    <div class="fieldWrapper">
+        	{{ parametersform.maxLength.errors }}
+        	<label for="id_maxLength">Max. peptide length:</label>
+        	{{ parametersform.maxLength }} 
+			<a href="info_maxLength.html" onclick="return popitup('info_maxLength', 'Max length', 300, 400)"> 
+			<img src="{{ STATIC_URL }}ui/ilink.jpeg" alt="info_maxLength" width="20" height="20" />
+			</a>
+      	    </div>
+
+	    	<div class="fieldWrapper">
+        	{{ parametersform.minLength.errors }}
+        	<label for="id_minLength">Min. peptide length:</label>
+        	{{ parametersform.minLength }} 
+			<a href="info_minLength.html" onclick="return popitup('info_minLength', 'Min length', 300, 400)"> 			
+			<img src="{{ STATIC_URL }}ui/ilink.jpeg" alt="info" width="20" height="20" />
+			</a>
+      	    </div>
+
+	    	<div class="fieldWrapper">
+        	{{ parametersform.zScore.errors }}
+        	<label for="id_zScore">Threshold of Z-Score:</label>
+        	{{ parametersform.zScore }} 
+			<a href="info_zScore.html" onclick="return popitup('info_zScore', 'Z Score', 300, 400)"> 
+			<img src="{{ STATIC_URL }}ui/ilink.jpeg" alt="info" width="20" height=20" />
+			</a>
+      	    </div>
+
+	    	<div class="fieldWrapper">
+        	{{ parametersform.bp.errors }}
+        	<label for="id_bp">Threshold of binomial probability:</label>
+        	{{ parametersform.bp }} 
+			<a href="info_bp.html" onclick="return popitup('info_bp', 'Binomial probability', 300, 400)"> 
+			<img src="{{ STATIC_URL }}ui/ilink.jpeg" alt="info" width="20" height=20" />
+			</a>
+      	    </div>
+
+	    	<div class="fieldWrapper">
+        	{{ parametersform.nf.errors }}
+        	<label for="id_nf">Minimum occurrence:</label>
+        	{{ parametersform.nf }} 
+			<a href="info_nf.html" onclick="return popitup('info_nf', 'Max length', 300, 400)"> 
+			<img src="{{ STATIC_URL }}ui/ilink.jpeg" alt="info" width="20" height=20" />
+			</a>
+      	    </div>
+	</div>
+
+		<br>
+
+		 <div class="fieldWrapper">
+         	 {{ parametersform.jobname.errors }}
+                 <label for="id_jobname">Job name (optional):</label>
+                 {{ parametersform.jobname }}
+                 </div>
+
+		<div class="fieldWrapper">
+    		{{ parametersform.email.errors }}
+    		<label for="id_email">If you want to be notified by email, please input your email (optional):</label>
+    		{{ parametersform.email }}
+    		</div>
+
+		<hr style="width:75%;float:left;" /><br>
+		<input type="submit", value="Submit" />
+</form> 
+
+		{% endblock %}
+    	</div>
+
+</body>
+</html>
+
+

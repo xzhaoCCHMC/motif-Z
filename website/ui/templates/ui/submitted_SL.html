@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>{% block title %}motif-Z pre-aligned submitted!{% endblock %}</title>
+    <script src="{{ STATIC_URL }}ui/jquery-1.10.2.js"></script>
+</head>
+
+<style>
+h1
+{
+color:blue;
+}
+table, td, th
+{
+border:1px solid green;
+text-align: center;
+}
+th 
+{
+background-color:green;
+color:white;
+}
+</style>
+
+
+<div id="container">
+    
+	<h1 color="blue">Motif-Z for length specific peptides</h1>
+    
+	<div class="status"></div>
+	<br><br>
+	<div class="table_title_1"></div>
+	<table border='1' id="display_1"></table>
+   	
+	<br>	
+</div> 
+
+{% if task_id %}
+<script type="text/javascript">
+	
+    $(document).ready(function() {
+		var PollState = function(task_id, email, jobname) {
+		setTimeout(function(){
+        	$.ajax({
+            	url: "{% url 'poll_state' %}",
+	    		type: "POST",
+				data: {"task_id" : task_id, "email": email, "jobname": jobname},
+			}).done(function(response){
+				console.log(response)
+				task_state = response.task_state
+				task_data = response.task_data
+				switch(task_state) {
+					case "Running":
+						$('.status').html("<h4>Your job is being processed...</h4><hr>This page will update itself automatically.<br> You can either watch the progress of your job, or acess results from your email if you filled in upon completion.");
+						PollState(task_id, email, jobname);
+						break;
+					case "Finished":
+						if (task_data == 'None'){
+							$('.status').html('<em>Your job {{jobname}} finished successfully, no motifs detected based on the input data.</em>');
+							break;
+						}
+						else {
+							if ('{{jobname}}' != ''){
+								$('.status').html('<em>Your job <b>{{jobname}}</b> finished successfully.</em>');
+							}
+							else {
+								$('.status').html('<em>Your job finished successfully.</em>');
+							}
+						$('.table_title_1').html('Table 1. Identified motifs from input data');
+						$('#display_1').html('<tr><th>Motif</th><th>Fold enrichment</th><th>Matches</th><th>p-Value</th><th>Score</th></tr>')
+                                                $.each(task_data, function(i, val) {
+                                                        var str=val[0];
+                                                        var format_str=val[1];
+                                                        var $row = $('<tr><td class=\'1\'>'+str+'</td><td>'+val[2]+'</td><td>'+val[3]+'</td><td>'+val[4]+'</td><td>'+val[5]+'</td><tr>').appendTo('#display_1');
+                                                        $row.find('td.1').each(function(i, el){
+                                                        var $letters = $(el).text().split('').reduce(function(set, letter, i){
+                                                                var $c = $('<font>')
+                                                                         .css({'color': setColor(i, format_str), 'font-size': setFontSize(i, format_str)})
+                                                                         .text(letter);
+                                                                return set.add($c);
+                                                                }, $());
+                                                                $(el).empty().append($letters);
+                                                        });
+    
+                                                        function setColor(index_rp, format_rps){
+                                                                var id=$.inArray(index_rp, format_rps);
+                                                                if (id==0) {
+                                                                          return ('red').toString();
+                                                                }
+                                                                else if (id==1) {
+                                                                          return ('blue').toString();
+                                                                }
+                                                                else if (id==2) {
+                                                                          return ('green').toString();
+                                                                }
+                                                                else if (id==3) {
+                                                                          retrun ('yellow').toString();
+                                                                }
+                                                                else {
+                                                                          return ('black').toString();
+                                                                }
+                                                        }
+						        function setFontSize(index_rp, format_rps){
+                                                                var id=$.inArray(index_rp, format_rps);
+                                                                if (id==0) {
+                                                                          return ('45px').toString();
+                                                                }
+                                                                else if (id==1) {
+                                                                          return ('35px').toString();
+                                                                }
+                                                                else if (id==2) {
+                                                                          return ('25px').toString();
+                                                                }
+                                                                else if (id==3) {
+                                                                          return ('20px').toString();
+                                                                }
+                                                                else {
+                                                                          return ('15px').toString();
+                                                                }
+                                                         }
+
+                                                });
+
+						break;
+						}
+					case "Waiting":
+						$('.status').html('<b>Your job was received by the server and queued for the run.</b> <hr>This page will update itself automatically.<br> You can either watch the progress of your job, or acess results from your email if you filled in upon completion.');
+						break;
+					default:
+						$('.status').html('Unrecoverable error in the current run, your job was cancelled. Please retry or contact with web adminstrator.');
+						break;
+					
+				};
+
+				
+			});
+		}, 3000);
+		}
+
+		PollState('{{ task_id }}', '{{ email }}', '{{ jobname }}');
+	});
+</script>
+{% endif %}
+
+</body>
+</html>
+

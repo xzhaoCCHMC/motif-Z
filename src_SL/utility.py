@@ -1,0 +1,366 @@
+# This module keeps all utility functions for Motif-X software
+# -- works on mathematical calculations including log, binomial distribution
+
+# Calculate the binomial distribution coefficient
+# In the motif finder, 
+# n = number of motifs in the foreground matrix
+# k = count of occurences of each aa at each position in foreground
+# p = frequency/probability of each aa at each position in background
+
+import math
+from math import log, exp
+import decimal
+import re
+
+
+# == Function Summary
+#   calculate negaive log value for number 
+#   Parameters:
+#   -- n, the number, can be binomial probability
+#   Return:
+#   -log(n)  
+def negative_log(n):
+    return -log(n)
+
+# == Function Summary
+#   calculate factorial with very large number using log trick
+#   Parameters:
+#   -- n, the number for factorial
+#   Return:
+#   log(factorial)  
+def log_factorial(n):
+    lg_sum = 0
+    for i in range(1, n+1):
+        lg_sum = lg_sum + log(i)
+    return lg_sum
+
+
+# == Function Summary
+#   calculate binomial coefficient with very large number using log trick
+#   Parameters:
+#   -- n, n choose k
+#   -- k, NOTE: when k = 0, then directly return 1 without calculating factorial
+#   Return:
+#   log form of binomial coefficient 
+def log_binomial_coe(n, k, log_factorial_map):
+    if k == 0 or k == n:
+        return 0
+    else:
+        result = log_factorial_map[n] - (log_factorial_map[k] + log_factorial_map[n-k])
+        return result
+
+
+# == Function Summary
+#   pre-calculate binomial coefficient
+#   Parameters:
+#   -- n, n choose k
+#   -- k, NOTE: when k = 0, then directly return 1 without calculating factorial
+#   Return:
+#   log form of binomial coefficient from map    
+def log_factorial_map(n):
+    log_factorial_map = {}
+    for i in range(1, n+1):
+        log_factorial_map[i] = log_factorial(i)
+    return log_factorial_map
+    
+
+
+# == Function Summary
+#   calculate binomial probability with very large number using log trick
+#   update the calculation to reflect the sum of bp instead of just one bp
+#   Parameters:
+#   -- n, n choose k
+#   -- k, 
+#   -- p, NOTE: if p == 0 or 1, which is either background doesn't have r/p pair or it is 
+#      previous identified pair, in both case, set binomial probability = 0
+#   Return:
+#   binomial probability in log form 
+def binomial_log_prob(n, k, p, log_factorial_map):
+    log_b_prob_record = 0
+    sum_b_prob = 0
+    if p == 0:
+        print("Warning: probability of this residue/position pair at background equal to 0")
+        return 0
+    elif p == 1:
+        return 0
+    else:
+        for i in range(k,n):
+#            print("k ="), k
+#            print("n ="), n
+#            print("i ="), i
+#            print("p = "), p
+            log_b_prob = log_binomial_coe(n,i, log_factorial_map) + i*log(p) + (n-i)*log(1-p)
+            if i == k:
+                log_b_prob_record = log_b_prob # keep a record of the value from the exact frequency
+#            print("log_b_prob"), log_b_prob
+#            print("log_binomial_coe(" + str(n) + "," + str(i)+ ")"), log_binomial_coe(n,i)
+#            print("i*log(p)"), i*log(p)
+#            print("(n-i)*log(1-p)"), (n-i)*log(1-p)
+            b_prob = math.exp(log_b_prob)
+            #print("b_prob"), b_prob
+            sum_b_prob += b_prob
+            
+        #b_prob = exp(log_b_prob)
+        #print("sum_b_prob"), sum_b_prob
+        #log_sum_b_prob = log(sum_b_prob)
+        if (sum_b_prob != 0):
+            log_sum_b_prob = log(sum_b_prob)
+        else:
+            log_sum_b_prob = log_b_prob_record
+        #print("log_sum_b_prob"), log_sum_b_prob
+        return log_sum_b_prob
+
+   
+# == Function Summary
+#   calculate binomial coefficient with very large number
+#   Parameters:
+#   -- n, n choose k
+#   -- k,  
+#   Return:
+#   regular form of binomial coefficient     
+    
+def norm_binomial_coe(n,k):
+    accum = 1
+    for m in range(1,k+1):
+        accum = accum*(n-k+m)/m
+    return accum 
+
+# == Function Summary
+#   calculate binomial coefficient with very large number
+#   Parameters:
+#   -- n, n choose k
+#   -- k, 
+#   -- p, 
+#   Return:
+#   regular form of binomial coefficient
+def norm_binomial_prob(n, k, p):
+    b_prob = norm_binomial_coe(n,k) * math.pow(p, k) * math.pow((1-p), (n-k))
+    return b_prob
+
+# == Function Summary
+#   calculate z-score of binomial probability
+#   Parameters:
+#   -- bp: can be sample binomial probability bp_sample
+#   -- mean: mean of the population
+#   -- std: standard deviation of population, use approximate value from sample set is fine
+#   Return:
+#   z-score for the sample form null distribution
+def z_score(bp, mean, std):
+    z_score = (bp-mean)/std
+    return z_score
+
+
+# == Function Summary
+#   Count how many peptides in a dataset matched a certain regex motif
+#   output the number of peptides in the dataset by the motif pattern match
+    
+def number_matched_motif(this_set, motif_rexp_format):
+        
+    count = 0 # initialize the number of motifs matched in the dataset
+    motif_rexp_format = re.compile(motif_rexp_format)
+    for item in this_set:
+        if motif_rexp_format.match(item):
+            count += 1
+    return count
+    
+# == Function Summary
+#   Count how many peptides in a dataset matched a certain regex motif
+#   output the number of peptides in the dataset by the motif pattern match
+    
+def number_matched_pairs(this_set, pairs):
+        
+    count = 0 # initialize the number of motifs matched in the dataset
+    for item in this_set:
+        flag = 0 # indicator of match of whole motif pairs 
+        for pair in pairs:
+            if len(item) <= pair[1] or len(item) < -pair[1]:
+                flag = 1
+                break
+            if item[pair[1]] != pair[0]:
+                flag = 1
+                break
+        if flag == 0:
+            count += 1
+    return count   
+
+# == Function Summary
+#   Calculate the fold change for current motif by dividing the sequences matched a cetain regex motif
+#   in foreground set to the matched motif in background set
+#   Parameters:
+#   -- prompt, a string to give the correct file path
+#   Return:
+#   --the value of the fold of enrichment
+    
+def fold_enriched(set1, set2, rexp_or_pairs, indicator): 
+    
+    if indicator == "rexp":
+        num_in_fg = number_matched_motif(set1, rexp_or_pairs)
+        num_in_bg = number_matched_motif(set2, rexp_or_pairs)
+    elif indicator == "pairs":
+        num_in_fg = number_matched_pairs(set1, rexp_or_pairs)
+        num_in_bg = number_matched_pairs(set2, rexp_or_pairs)
+        
+    fg_size = len(set1)
+    bg_size = len(set2)
+        
+    fraction_motif_set1 = num_in_fg / float(fg_size)
+    fraction_motif_set2 = num_in_bg / float(bg_size)
+        
+    if fraction_motif_set2 != 0:
+        fold = fraction_motif_set1 / fraction_motif_set2
+        if fold > 2:
+            fold = int(fold) 
+        else:
+            fold = round(fold, 2)  
+    else:
+        print("Warning: zero background in fold enrichment calculation")  
+        fold = 'NA'
+    return fold, num_in_fg, num_in_bg
+    
+def format_motif(motif, MOTIF_LENGTH):
+    '''
+    take a motif from a list of rp pairs and format to regular expression
+    '''
+#    positive_pos = []
+#    negative_pos = []
+#    for pair in motif:
+#        if pair[1] >= 0:
+#            positive_pos.append(pair)
+#        else:
+#            negative_pos.append(pair)
+#         
+#    positive_pos.sort(lambda x, y : cmp(x[1], y[1]))
+#    sorted_positive = positive_pos
+#    negative_pos.sort(lambda x, y : cmp(x[1], y[1]))
+#    sorted_negative = negative_pos
+        
+    re_motif = ""
+    for i in range(MOTIF_LENGTH):
+        re_motif += '.'
+    for pair in motif:
+        position = pair[1]
+        if position == -1:
+            re_motif = re_motif[:-1] + pair[0]
+        else:
+            re_motif = re_motif[:position] + pair[0] + re_motif[position+1:]   
+        
+    return re_motif       
+        
+        
+def format_to_rexp(rp_pairs, MOTIF_LENGTH, MINIMUM_LENGTH):
+    
+    rexp = ""
+    for i in range(MOTIF_LENGTH):
+        rexp += '.'
+    
+    #sort motif pairs based on their positions
+    pairs = sorted(rp_pairs, key= lambda pair:pair[1])
+    # make a position list from rp pairs
+    #list_positions = [pair[1] for pair in pairs] 
+    prev_position = 0
+    border_right = 0 # intialize the variable to count the negative position
+    count = 0 # Count the number of pairs put into the motif
+    for pair in pairs:
+        position = pair[1]
+        if count == 0 and position < 0:
+            border_right = position
+        # All pairs aligned from C- terminus
+        if position < 0:
+            if position < -1:
+                rexp = rexp[:position] + pair[0] + rexp[position+1:]
+            else:
+                rexp = rexp[:position] + pair[0]
+            print "rexp = " + str(rexp)
+            if count == len(pairs) - 1:
+                fixed_length = -border_right
+                start_wildcards = MINIMUM_LENGTH - fixed_length
+                if start_wildcards < 0:
+                    start_wildcards = 0
+                end_wildcards = MOTIF_LENGTH - fixed_length
+                if end_wildcards == 0:
+                    return rexp
+                else:
+                    rexp = ".{" + str(start_wildcards) + "," + str(end_wildcards) + "}" + rexp[border_right:]
+                    return rexp
+                    
+        else:
+            
+            # Check if there is an collision 
+#            if isCollide(position, list_positions, MOTIF_LENGTH) == True:
+#                handleCollision(rexp, )
+            # Pairs combined with N- and C- terminus alignment
+            if prev_position < 0:
+                rexp = rexp[:position] + pair[0] + rexp[position+1:]
+                if count == len(pairs)-1:
+                    fixed_length = position + 1 - border_right
+                    start_wildcards = MINIMUM_LENGTH - fixed_length
+                    end_wildcards = MOTIF_LENGTH - fixed_length
+                    # check if the largest position is the first one
+                    if end_wildcards ==0:
+                        return rexp
+                    elif end_wildcards > 0:
+                        if start_wildcards < 0:
+                            start_wildcards = 0
+                        rexp = (rexp[:position+1] + ".{" + str(start_wildcards) + "," + str(end_wildcards) + "}" 
+                                + rexp[border_right:])
+                        return rexp
+            # All pairs aligned from N-terminus
+            else:
+                rexp = rexp[:position] + pair[0] + rexp[position+1:]
+                if count == len(pairs)-1:
+                    fixed_length = position + 1 - border_right
+                    if fixed_length > MOTIF_LENGTH:
+                        print "Complex motif, stopped"
+                        return "Stop"
+                    else:
+                        start_wildcards = MINIMUM_LENGTH - fixed_length
+                        if start_wildcards < 0:
+                            start_wildcards = 0
+                        end_wildcards = MOTIF_LENGTH - fixed_length
+                        if end_wildcards == 0:
+                            return rexp
+                        else:
+                            if border_right != 0:
+                                rexp = (rexp[:position+1] + ".{" + str(start_wildcards) + "," + str(end_wildcards) + "}"
+                                     + rexp[border_right:])
+                            else:
+                                rexp = rexp[:position+1] + ".{" + str(start_wildcards) + "," + str(end_wildcards) + "}"
+                            return rexp
+                    
+        prev_position = position
+        count += 1
+    
+
+#category the foreground peptides into sets by their length
+def categoryPepByLength(pep_set, LIST_KMERS):
+    #result_dict = {k : set([]) for k in LIST_KMERS} #Return a result dictionary with length of peptides as key
+    result_dict = {}
+    for k in LIST_KMERS:
+        result_dict[k] = set([])
+
+    for pep in pep_set:
+        for kmer in LIST_KMERS:
+            if len(pep)==kmer:
+                result_dict[kmer].add(pep)    
+    return result_dict
+
+#Calculate the percentage difference between 2 binomial probabilities
+def diffByPercent(num1, num2):
+    diff = abs(num1-num2)
+    average = abs((num1 + num2)/2)
+    percentage = diff/float(average)
+    return percentage
+
+
+# Generate the rp position list for color/font size display of motif
+# == Function Summary
+#   From produced motifs regular expression format to generate a list of rp positions for presentation
+#   Arguments: rp_pairs(list of sequential rp pairs as generated in iteration)
+#              rexp(a string that prodcued from rp_pairs with regular expression format)
+#   Return: rp_ids(a list of postions of residue and its correspoinding iteration, starting from 0 iteration)
+def rp_iteration_id(rp_pairs):
+    rp_ids = list() #Build a list to store each residue's position in motif regular expression and its position in this list is its iteration number in algorithm
+    for rp in rp_pairs:
+        rp_ids.append(rp[1])
+    return rp_ids
+

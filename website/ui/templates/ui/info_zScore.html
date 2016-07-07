@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>{% block title %}Parameter: Z-Score{% endblock %}</title>
+
+<style>
+body
+{
+color:red; 
+}
+h3 {color:rgb(0,0,255);}
+hr {
+  border: 0;
+  width: 65%;
+  color: #f00;
+  background-color: rgb(0,0,255);
+  height: 3px;
+}
+
+p.ex {color:rgb(0,0,255);}
+ul.a {list-style-type:square;}
+</style>
+
+</head>
+
+<body>
+    
+    <div id="content">
+        {% block content %}
+	<h3>Z-Score</h3>
+	<p>Standard Z score reflect the number of standard deviations an observed (not shuffled) p-value lies from the population mean of the null distribution. The default value is 4, which indicates a possibility of 99.99% to be truly significant. Refer to our paper for more details. 
+	{% endblock %}
+    </div>
+    
+
+</body>
+</html>
+
+

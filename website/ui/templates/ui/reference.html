@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<style>
+div.text
+{
+height:480px;
+padding:10px;
+border:2px solid #98bf21;
+margin:10px;
+}
+
+p.ex {color:rgb(0,0,255);
+      text-align:center;
+      bottom:10px;
+}
+</style>
+
+{% extends "base.html" %}
+
+{% block nav-reference %}<strong class="nav-active" style="color:blue; background-color:#98bf21;text-align:center;
+padding:4px;display:block;">Reference</strong>{% endblock %}
+
+
+{% block new-page %}
+
+<body>
+	<br><br><br><br><br>
+	<div class="text" style="width:85%">
+	<p style="color:black;">Please cite the following:<br><br>
+	   Zhao X & Elias JE (2014) Motif-Z: A sensitive, length-independent algorithm for identifying motifs from MHC class I peptide ligands. 
+	In preparation. </p>
+	</div>
+</body>
+
+<p class="ex">
+	    ©2014 Cincinnati Children's Hospital Medical Center and Stanford University
+    </p>
+
+{% endblock %}
+
+
+
